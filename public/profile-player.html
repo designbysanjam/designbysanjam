@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+   
+       
+   <script>
+
+    function showPrev1(fileRef,prevRef)
+    {
+        const [file] = fileRef.files
+        if (file) {
+            prevRef.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+      $("#btnFetchWithAJAX").click(function () {
+
+        let obj = {
+          type: "get",
+          url: "/get-profile",
+          data: {
+            email: $("#email").val(),
+            //txtPwd:$("#txtPwd").val()
+          }
+        }
+        $.ajax(obj).then(
+          function (responseJsonAry) {
+         //  alert(JSON.stringify(responseJsonAry))
+         let adhaarpicurl = responseJsonAry[0].adhaarpicurl;
+         let profilepicurl = responseJsonAry[0].profilepicurl;
+            let address = responseJsonAry[0].address;
+            let contact = responseJsonAry[0].contact;
+            let gamesuplay = responseJsonAry[0].gamesuplay;
+            let otherinfo = responseJsonAry[0].otherinfo;
+
+            //alert(mobile+"\n"+pwd+"\n "+picurl);
+            $("#prev1").prop("src", adhaarpicurl);
+            $("#prev2").prop("src", profilepicurl);
+            $("#Adr").val(address);
+            $("#Con").val(contact)
+            $("#games").val(gamesuplay);
+           $("#hdn").val(picurl);
+            $("#txtothin").val(otherinfo);
+          })
+          .fail(function (err)
+           {
+            alert(err.message);
+          })
+      })
+      //..................................
+      $("#email").blur(function () {
+
+        let obj = {
+          type: "get",
+          url: "/get-profile",
+          data: {
+            email: $("#email").val(),
+            //txtPwd:$("#txtPwd").val()
+          }
+        }
+       $.ajax(obj).then(
+          function (response) {
+          //  alert(response)
+            $("#erremail").html(response)
+          }).fail(function (err) {
+            alert(err);
+          })
+      })
+    })
+
+
+    function showUser()
+    {
+      let activeUser=localStorage.getItem("activeUser");
+      document.getElementById("welcome").innerHTML=activeUser;
+    }
+  </script>
+ <style>
+  .services {
+    background-color: #af3b49;
+    font-size: 22px;
+    color: white;
+   
+  }
+</style>
+
+
+</head>
+<body onload="showUser();">
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Tournaments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
+          </li>
+        </ul>
+        welcome: <span id="welcome">* </span>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="clear">
+&nbsp;
+</div>
+
+
+  <div class="container mt-4">
+
+    <div class="services col-md-12" style="padding:20px 0px 20px 15px" >
+      <center>
+        Player Profile
+     </center>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+
+      <form action="/get-profile" class="row g-3" method="post"  enctype="multipart/form-data">
+        <input type="hidden" id="hdn" name="hdn">
+
+        <div class="col-md-8">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email">
+        
+        </div>
+        <div class="col-md-2">
+          <input type="button" value="Get Data" id="btnFetchWithAJAX">
+          </div>
+
+          <div class="col-md-6">
+            <p>
+              Upload Adhaar Card <br>
+              <input type="file" name="adhaarPic" id="adhaarPic" onchange="showPrev1(adhaarPic,prev1)"> <br>
+              <img src="pics/profile.jpg" width="100" height="100" id="prev1" alt="">
+            </p>
+          </div>
+          
+          <div class="col-md-6">
+            <p>
+              Upload Profile Pic <br>
+              <input type="file" name="profilePic" id="profilePic" onchange="showPrev1(profilePic,prev2)"> <br>
+              <img src="pics/profile.jpg" width="100" height="100" id="prev2" alt="">
+            </p>
+          </div>
+     
+        <div class="col-8">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="Adr" name="Adr" placeholder="1234 Main St"  />
+        </div>
+      
+        <div class="col-md-4">
+            <label for="inputContact" class="form-label">Contact No</label>
+            <input type="text" class="form-control" id="Con" name="Con"  />
+          </div>
+        <div class="col-md-6">
+          <label for="inputDeals" class="form-label">Games you play</label>
+          <input type="text" class="form-control" id="games" name="games"  />
+        </div>
+    
+       
+      
+      
+        <div class="col-md-6">
+          <label for="inputOtherInfo" class="form-label">Other Info</label>
+          <input type="text" class="form-control" id="othin" name="othin" />
+        </div>
+        <center>
+
+          <div class="col-md-6">
+            <input type="submit" class="btn btn-primary" value="Upload Data">
+            <input type="submit" class="btn btn-primary" value="Modify" formaction="/update-profile">
+          </div>
+         
+    
+        </center>
+      </form>
+    </div>
+  
+  </div>
+
+  
+
+
+
+  <nav class="navbar bg-body-primary  mt-5" style="transform: translateY(50px); background-color: #af3b49;">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1 text-white" >Developer:@designbysanjam</span>
+      <!-- <span  class="navbar-brand mb-0 h1 text-white text-md-end">About</span> -->
+
+    </div>
+  </nav>
+
+
+</body>
+</html>

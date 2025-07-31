@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ 
+
+    <script>
+      var mymodule = angular.module("kuchModule", []);
+  mymodule.controller("kuchController", function($scope, $http) {
+ 
+  });
+   
+
+  </script>
+
+    
+<style>
+  .services {
+    background-color: #af3b49;
+    font-size: 22px;
+    color: white;
+   
+  }
+</style>
+  </head>
+  <body  ng-app="kuchModule" ng-controller="kuchController" onload="showUser();">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+  
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Tournaments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Players</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
+            </li>
+          </ul>
+       
+  
+        </div>
+      </div>
+    </nav>
+     
+   
+
+<div class="clear">
+&nbsp;
+</div>
+    <div class="services col-md-12" style="padding:20px 0px 20px 15px" >
+      <center>
+
+      Admin Dashboard
+  
+      </center>
+    </div>
+
+  <div class="row">
+    <div class="col-md-10  offset-md-1 mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card" >
+            <img src="pics/org console.JPG"  style="width:auto; height : 300px" class="card-img-top" alt="..." />
+            <div class="card-body">
+            <center>
+              <a href="org-console.html" class="btn btn-primary" id="orgbtn">Organisation Console</a>
+            </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="pics/player console.JPG"  style="width:auto; height : 300px"  class="card-img-top" alt="..." />
+            <div class="card-body">
+            <center>
+              <a href="player-console.html" class="btn btn-primary" id="plabtn">Player Console</a>
+            </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="pics/user console.JPG" style="width:auto; height : 300px" class="card-img-top" alt="..." />
+            <div class="card-body">
+             <center>
+              <a href="admin-users-console.html" class="btn btn-primary" id="plabtn">Users Console</a>
+            </center>
+            </div>
+          </div>
+        </div>
+      
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="clear">
+    &nbsp;
+    </div>
+  <div class="services col-md-12" style="padding:20px 0px 20px 15px" >
+    <center>
+
+      Our Services
+ 
+    </center>
+  </div>
+
+  <div class="clear">
+    &nbsp;
+    </div>
+<div class="row">
+  <div class="col-md-10  offset-md-1 mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" >
+          <center>
+            <div  class="services">
+              Tournaments
+            </div>
+          </center>
+          <img src="pics/about_2.jpg"  style="width:auto; height : 300px" class="card-img-top" alt="..." />
+          <div class="card-body">
+           
+          <center>
+         
+            <div>
+              Participants battle it out across multiple rounds to claim victory
+            </div>
+            <!-- <a href="#" class="btn btn-primary" id="orgbtn">Tournaments</a> -->
+          </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <center>
+            <div  class="services">
+              Organiser
+            </div>
+          </center>
+          <img src="pics/org card.png"  style="width:auto; height : 300px"  class="card-img-top" alt="..." />
+          <div class="card-body">
+          <center>
+         
+            <div>
+              Organizers welcome all teams and players! Please check schedule and rules.
+            </div>
+            <!-- <a href="/publish-events" class="btn btn-primary" id="plabtn">Post events</a> -->
+          </center>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div>
+            <center>
+            <div class="services">
+              Sports Person
+            </div>
+          </center>
+          </div>
+          <img src="pics/overtime-header.jpg" style="width: auto; height : 300px" class="card-img-top" alt="..." />
+          <div class="card-body">
+           <center>
+            Looking forward to a great tournament. Best of luck to all competitors!
+            <!-- <a href="/tourn-manager.html" class="btn btn-primary" id="plabtn">Tournaments Manager</a> -->
+          </center>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear">
+  &nbsp;
+  </div>
+
+
+<div class="services col-md-12" style="padding:20px 0px 20px 15px" >
+  <center>
+    Reach Us
+ </center>
+</div>
+<div class="clear">
+&nbsp;
+</div>
+<!-- footer -->
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+      
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110335.61285977773!2d74.87628428043422!3d30.208892742711758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39173297173abbcd%3A0xa00033c0a58a5ac8!2sBathinda%2C%20Punjab!5e0!3m2!1sen!2sin!4v1752939879124!5m2!1sen!2sin" width="600" height="250" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+       
+       
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 ">
+    <div class="card text-white" style="background-color: #af3b49;">
+      <div class="card-body">
+       
+        <h5 class="card-title">CONTACT US</h5>
+        <p class="card-text">9041643443</p>
+        <h5 class="card-title">ADDRESS</h5>
+        <p class="card-text">BATHINDA,PUNJAB,INDIA</p>
+        <h5 class="card-title">EMAIL ID</h5>
+        <p class="card-text">japsanjam@gmail.com</p>
+        <p> </p>
+        <p class="card-text">&nbsp;</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar bg-body-primary  mt-5" style="transform: translateY(15px); background-color: #af3b49;">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1 text-white" >Developer:@designbysanjam</span>
+    <!-- <span  class="navbar-brand mb-0 h1 text-white text-md-end">About</span> -->
+
+  </div>
+</nav>
+
+
+</body>
+</html>

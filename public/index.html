@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tournaments</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script>
+    $(document).ready(function () {
+      $("#saved").click(function () {
+
+        let obj = {
+          type: "get",
+          url: "/get-one",
+          data: {
+            txtEmail: $("#txtEmail").val(),
+            txtPwd: $("#txtPwd").val(),
+            comboState: $("#comboState").val(),
+          }
+        }
+
+        $.ajax(obj).then(
+          function (responseJsonary) {
+            let txtEmail = $("#txtEmail").val();
+
+            alert("signed up successfulllyyy");
+          }).fail(function (err) {
+            alert(err.message);
+          })
+      })
+
+    })
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("#logged").click(function () {
+
+        let obj = {
+          type: "get",
+          url: "/do-login",
+          data: {
+            txtEmail: $("#txtEmail2").val(),
+            txtPwd: $("#txtPwd2").val(),
+          }
+        }
+
+        $.ajax(obj).then(
+          function (response) {
+            alert("*" + response + "*");
+            // alert(responseJsonary);
+            if (response == "Blocked")
+              alert("sorry your id is blocked");
+            else if (response == "Invalid")
+              alert("Invalid emailid or password");
+            else if (response == "Organizer") {
+              localStorage.setItem("activeUser", $("#txtEmail2").val(),)
+              location.href = "dash-organiser.html";
+            }
+            else if (response == "Player") {
+              localStorage.setItem("activeUser", $("#txtEmail2").val(),)
+              location.href = "dash-player.html";
+            }
+            else if (response == "Admin")
+              location.href = "dash-admin.html";
+
+
+
+          }).fail(function (err) {
+            alert(err.message);
+          })
+      })
+
+    })
+
+  </script>
+
+  <!-- login validation -->
+  <script>
+    $(document).ready(function () {
+      $("#txtEmail2").keyup(function () {
+        let email = $(this).val();//getter
+        //  let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+        let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+        if (email == "") {
+          $("#errMsgEmail").html("Empty").addClass("not-Valid").removeClass("Valid");
+          //  $("#errPicE").addClass("not-ok-pic").removeClass("ok-pic");
+          $(this).focus();
+        }
+        else if (regex.test(email) == false) {
+          $("#errMsgEmail").html("Invalid Emailid").addClass("not-Valid").removeClass("Valid");
+          //  $("#errPicE").addClass("not-ok-pic").removeClass("ok-pic");
+          $(this).focus();
+        }
+        else {
+          $("#errMsgEmail").html("Valid").addClass("Valid").removeClass("not-Valid");
+          // $("#errPicE").addClass("ok-pic").removeClass("not-ok-pic");
+        }
+
+      })
+      $("#eye").click(function () {
+        let txt = $("#txtPwd2").prop("type");
+        if (txt == "password") {
+          $("#txtPwd2").prop("type", "text");//type changed
+          $("#eye").removeClass("fa-eye").addClass("fa-eye-slash");
+        }
+        else {
+          $("#txtPwd2").prop("type", "password");
+          $("#eye").removeClass("fa-eye-slash").addClass("fa-eye");
+        }
+
+
+      })
+    })
+  </script>
+
+
+  <!-- SIGNUP VALIDATIONS -->
+  <script>
+    $(document).ready(function () {
+      $("#txtEmail").keyup(function () {
+        let email = $(this).val();//getter
+        //  let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+        let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+        if (email == "") {
+          $("#errMsgE").html("Empty").addClass("not-Valid").removeClass("Valid");
+          //  $("#errPicE").addClass("not-ok-pic").removeClass("ok-pic");
+          $(this).focus();
+        }
+        else if (regex.test(email) == false) {
+          $("#errMsgE").html("Invalid Emailid").addClass("not-Valid").removeClass("Valid");
+          //  $("#errPicE").addClass("not-ok-pic").removeClass("ok-pic");
+          $(this).focus();
+        }
+        else {
+          $("#errMsgE").html("Valid").addClass("Valid").removeClass("not-Valid");
+          // $("#errPicE").addClass("ok-pic").removeClass("not-ok-pic");
+        }
+
+      })
+      $("#eye").click(function () {
+        let txt = $("#txtPwd").prop("type");
+        if (txt == "password") {
+          $("#txtPwd").prop("type", "text");//type changed
+          $("#eye").removeClass("fa-eye").addClass("fa-eye-slash");
+        }
+        else {
+          $("#txtPwd").prop("type", "password");
+          $("#eye").removeClass("fa-eye-slash").addClass("fa-eye");
+        }
+
+
+      })
+    })
+  </script>
+  <style>
+    .services {
+      background-color: #af3b49;
+      font-size: 22px;
+      color: white;
+
+    }
+  </style>
+  <style>
+    .foto {
+      width: 260px;
+      height: 300px;
+      margin-left: 130px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        Playground
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Tournaments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
+          </li> -->
+        </ul>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#divSignup">SIGN
+          UP</button>
+        <div>&nbsp;</div><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#divLogin">LOG IN</button>
+
+      </div>
+    </div>
+  </nav>
+  <hr />
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="pics/img_1.jpg" class="d-block w-100" alt="..." style="height:560px" ;>
+      </div>
+      <div class="carousel-item">
+        <img src="pics/img_4.jpg" class="d-block w-100" alt="..." style="height: 560px" ;>
+      </div>
+      <div class="carousel-item">
+        <img src="pics/img_2.jpg" class="d-block w-100" alt="..." style="height: 560px" ;>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <div class="services col-md-12" style="padding:20px 0px 20px 15px">
+    <center>
+
+      Our Services
+
+    </center>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10  offset-md-1 mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <center>
+              <div class="services">
+                Tournaments
+              </div>
+            </center>
+            <img src="pics/about_2.jpg" style="width:auto; height : 300px" class="card-img-top" alt="..." />
+            <div class="card-body">
+
+              <center>
+
+                <div>
+                  Participants battle it out across multiple rounds to claim victory
+                </div>
+                <!-- <a href="#" class="btn btn-primary" id="orgbtn">Tournaments</a> -->
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <center>
+              <div class="services">
+                Organiser
+              </div>
+            </center>
+            <img src="pics/org card.png" style="width:auto; height : 300px" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <center>
+
+                <div>
+                  Organizers welcome all teams and players! Please review the updated schedule and rules on our website.
+                </div>
+                <!-- <a href="/publish-events" class="btn btn-primary" id="plabtn">Post events</a> -->
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div>
+              <center>
+                <div class="services">
+                  Sports Person
+                </div>
+              </center>
+            </div>
+            <img src="pics/overtime-header.jpg" style="width: auto; height : 300px" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <center>
+                Looking forward to a great tournament. Best of luck to all competitors!
+                <!-- <a href="/tourn-manager.html" class="btn btn-primary" id="plabtn">Tournaments Manager</a> -->
+              </center>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="services col-md-12" style="padding:20px 0px 20px 15px">
+    <center>
+      Meet Developers
+    </center>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-10  offset-md-1 mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+
+            <img src="pics/sir.jpg" class="foto" alt="..." />
+            <div class="card-body">
+              <center>
+                Under the Guidance of<br>
+
+                Rajesh Bansal<br>
+                Author of 'REAL JAVA'
+              </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+
+            <img src="pics/my-photo.JPG" class="foto" alt="..." />
+            <div class="card-body">
+              <center>
+                Japsanjam Kaur<br>
+                1st Year BTECH-CSE<br>
+                Full Stack Developer
+
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="clear">
+    &nbsp;
+  </div>
+  <div class="services col-md-12" style="padding:20px 0px 20px 15px">
+    <center>
+      Reach Us
+    </center>
+  </div>
+  <div class="clear">
+    &nbsp;
+  </div>
+  <!-- footer -->
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110335.61285977773!2d74.87628428043422!3d30.208892742711758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39173297173abbcd%3A0xa00033c0a58a5ac8!2sBathinda%2C%20Punjab!5e0!3m2!1sen!2sin!4v1752939879124!5m2!1sen!2sin"
+            width="450" height="250" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 ">
+      <div class="card text-white" style="background-color: #af3b49;">
+        <div class="card-body">
+
+          <h5 class="card-title">CONTACT US</h5>
+          <p class="card-text">9041643443</p>
+          <h5 class="card-title">ADDRESS</h5>
+          <p class="card-text">BATHINDA,PUNJAB,INDIA</p>
+          <h5 class="card-title">EMAIL ID</h5>
+          <p class="card-text">japsanjam@gmail.com</p>
+          <p> </p>
+          <p class="card-text">&nbsp;</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar bg-body-primary  mt-5" style="transform: translateY(15px); background-color: #af3b49;">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1 text-white">Developer:@designbysanjam</span>
+      <!-- <span  class="navbar-brand mb-0 h1 text-white text-md-end">About</span> -->
+
+    </div>
+  </nav>
+
+
+  <!-- modal -->
+
+  <div class="modal fade" tabindex="-1" id="divSignup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Sign Up</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+          <form>
+            <div class="mb-3">
+              <label for="txtEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" name="txtEmail">
+
+              <div class="txtbox-div">
+
+                <div style="display: flex;">
+                  <div style="margin-left: 10px; "></div>
+                  <div id="errMsgE"></div>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="mb-3">
+              <label for="txtPwd" class="form-label">Password</label>
+              <!-- <div> <i class="fa-solid fa-eye"></i></div> -->
+              <input type="password" class="form-control" id="txtPwd" name="txtPwd">
+
+            </div>
+            <div class="mb-3">
+              <label for="comboState" class="form-label">User Type</label>
+            </div>
+            <select class="form-control" id="comboState" name="txtUser" onchange="doShowSelState(comboState,comboRes);">
+              <option value="none">Select</option>
+              <option value="Organizer">Organiser</option>
+              <option value="Player">Player</option>
+            </select>
+            <div id="comboRes"></div>
+
+            <hr>
+            <center>
+              <button type="button" class="btn btn-primary" value="Sign Up" id="saved">SIGN UP</button>
+            </center>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- login modal -->
+
+  <div class="modal fade" tabindex="-1" id="divLogin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+          <form>
+            <div class="mb-3">
+              <label for="txtEmail2" class="form-label">
+                Email address
+              </label>
+              <input type="email" class="form-control" id="txtEmail2" aria-describedby="emailHelp" name="txtEmail2">
+
+              <div class="txtbox-div">
+
+                <div style="display: flex;">
+                  <div style="margin-left: 10px; "></div>
+                  <div id="errMsgEmail"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtPwd2" class="form-label">
+                <font size="4px">Password</font>
+                <!-- <div> <i class="fa-solid fa-eye"></i></div> -->
+              </label>
+
+              <input type="password" class="form-control " id="txtPwd2" name="txtPwd2">
+
+            </div>
+            <center>
+              <button type="button" class="btn btn-primary" value="Login" id="logged">Login</button>
+            </center>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+
+</html>
